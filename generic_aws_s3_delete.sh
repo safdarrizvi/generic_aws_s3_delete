@@ -4,13 +4,13 @@
 #Script Name         : generic_aws_s3_delete.sh
 #Created on          : 11th Oct 2020
 #Author(s)           : Syed Safdar Abbas Rizvi
-#Purpose             : Script to delete the folder from S3 for particular ENV, Table and Date
+#Purpose             : Script to delete the folder from S3 for particular Bucket Name, Table and Date
 #Dependent Scripts   : source.txt
 #Change Log          :
 ################################################################################################################
 
 source_env=$1
-echo "Source Environment is ${source_env}"
+echo "Bucket Name is ${bucket_name}"
 table=$2
 echo "Table Name is ${table}"
 date=$3
@@ -34,6 +34,6 @@ echo "Folder for table $table is $folder"
 
 echo "Starting the deletion process"
 
-export raw_responce=$(aws s3 rm s3://bb-raw-zone-$source_env/${folder}/inbound/${table}/${date}  --recursive)
+export raw_responce=$(aws s3 rm s3://${bucket_name}/${folder}/inbound/${table}/${date}  --recursive)
 
 echo "Deletion of data for ${table} is completed for date ${date}"
